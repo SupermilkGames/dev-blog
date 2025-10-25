@@ -1,5 +1,7 @@
 ---
 layout: home
-title: "Setup"
+title: "Home"
 ---
-This is a test
+
+Here I share updates about my indie projects, tools, and prototypes.
+Check out my latest posts below!

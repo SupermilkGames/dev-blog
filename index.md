@@ -1,4 +1,5 @@
 ---
-Devblog
+layout: home
+title: "Setup"
 ---
-Test
+This is a test

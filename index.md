@@ -1,5 +1,4 @@
 ---
-Devblog - Supermilk Games
+Devblog
 ---
-
 Test

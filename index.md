@@ -1,4 +1,4 @@
 ---
-title: Welcome to my blog
+Devblog - Supermilk Games
 ---
 

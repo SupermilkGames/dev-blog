@@ -1,6 +1,6 @@
 ---
 ---
 
-@import
-  "minima/skins/{{ site.minima.skin | default: 'classic' }}",
-  "minima/initialize";
+@import "minima";       // This loads all of Minima’s core styles
+@import "minima/custom"; // Optional (only if you have overrides in _sass/minima)
+@import "custom-styles"; // Your own overrides

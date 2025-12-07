@@ -1,16 +1,20 @@
 // Example overrides
 .site-title {
-  color: #ff4081;
+    color: #ff4081;
 }
 
 body {
-  background-color: #3aaab3; // light gray
+    background: linear-gradient(0deg, #618cf8 0%, #96f2f0 100%);
+}
+
+header.site-header {
+    background-color: #618cf8; /* solid */
+    border-bottom: 1px solid #618cf8;
 }
 
 a {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 header {
-  background-color: #222;
 }

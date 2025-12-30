@@ -13,8 +13,13 @@ to make sure of two things:
 - We are pressurized to deliver and by extension working on our projects
 - We can keep ourselves open to ideas and/or criticism even in the early stages of delevopment
 
-Since neither I nor the other member of SUPERMILK. are particularly good writers (a fact we are actively trying to work on), and I do not know
-what to add, here is our logo to fill up some space :)
+We also might start working on small side-projects, in which we would learn some techniques that we would like to apply to our main projects. Currently, we're mainly working on two projects:
+
+- A JRPG-style game
+- A dungeon crawler
+
+
+Since neither I nor the other member of SUPERMILK. are particularly good writers (a fact we are actively trying to work on), and I do not know what to add, here is our logo to fill up some space :)
 
 ![SUPERMILK logo](/assets/images/about/supermilk_logo_no_bg.png)
 

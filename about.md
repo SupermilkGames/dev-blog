@@ -18,7 +18,6 @@ We also might start working on small side-projects, in which we would learn some
 - A JRPG-style game
 - A dungeon crawler
 
-
 Since neither I nor the other member of SUPERMILK. are particularly good writers (a fact we are actively trying to work on), and I do not know what to add, here is our logo to fill up some space :)
 
 ![SUPERMILK logo](/assets/images/about/supermilk_logo_no_bg.png)

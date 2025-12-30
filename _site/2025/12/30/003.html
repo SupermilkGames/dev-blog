@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[Progress Update] Navigating our world | SUPERMILK. Dev-Blog</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[Progress Update] Navigating our world" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Today we can finally show the progress we made over the past few weeks. We want the environment of our game to be 3-dimensional, but keep characters and some other things as 2-dimensional sprites." />
+<meta property="og:description" content="Today we can finally show the progress we made over the past few weeks. We want the environment of our game to be 3-dimensional, but keep characters and some other things as 2-dimensional sprites." />
+<link rel="canonical" href="http://localhost:4000/2025/12/30/003.html" />
+<meta property="og:url" content="http://localhost:4000/2025/12/30/003.html" />
+<meta property="og:site_name" content="SUPERMILK. Dev-Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-12-30T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[Progress Update] Navigating our world" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-12-30T00:00:00+01:00","datePublished":"2025-12-30T00:00:00+01:00","description":"Today we can finally show the progress we made over the past few weeks. We want the environment of our game to be 3-dimensional, but keep characters and some other things as 2-dimensional sprites.","headline":"[Progress Update] Navigating our world","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2025/12/30/003.html"},"url":"http://localhost:4000/2025/12/30/003.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link id="main-stylesheet" rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="SUPERMILK. Dev-Blog" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="/">SUPERMILK. Dev-Blog</a>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon"></span>
+        </label>
+
+        <div class="nav-items">
+  <a class="nav-item" href="/about/">About Us</a>
+  <a class="nav-item" href="/">Home</a>
+</div>
+
+      </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[Progress Update] Navigating our world</h1>
+    <div class="post-meta">
+      <time class="dt-published" datetime="2025-12-30T00:00:00+01:00" itemprop="datePublished">
+        Dec 30, 2025
+      </time>
+    </div>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Today we can finally show the progress we made over the past few weeks. We want the environment of our game to be 3-dimensional, but keep
+characters and some other things as 2-dimensional sprites.</p>
+
+<p><img src="/assets/images/blog/2025-12-30/env-show.png" alt="" /></p>
+
+<p>This means, that we need to always take into account, where our player is facing whenever we rotate the camera. For this, we just store
+the facing direction of the player and the facing direction of the camera on the x-z-plane and apply calculations for our blending vectors when needed. To simplify, this means that the directions the sprites are facing are always consistent with the camera facing direction.</p>
+
+<p><img src="/assets/images/blog/2025-12-30/rot.gif" alt="" /></p>
+
+<p>This also affects the sprites of all NPCs and interactables scattered around the world of course. The camera has locked rotations, which means that the player is allowed to rotate it to eight predefined angles. When building the environments, this also needs to be taken into account. There will be some environments (perhaps interiors or special environments) in which the camera either cannot be rotated or will rotate automatically for a cinematic effect.</p>
+
+<h2 id="movement-system">Movement System</h2>
+
+<p><img src="/assets/images/blog/2025-12-30/move.gif" alt="" /></p>
+
+<p>The movement system has progressed greatly. There is now a system in place that detects, whether a player can jump down a ledge or ever vault over a gap. The system for jumping is made up of three raycasts pointing downwards, all of which are distributed evenly in front of the player. These raycasts are only activated, whenever the player collides with an invisible wall that hinders the player to just fall down.</p>
+
+<p><img src="/assets/images/blog/2025-12-30/coll.png" alt="" /></p>
+
+<p>To efficiently create these invisible walls, I created a Godot plugin that takes the colliders of an area and checks, where the ledges are. <em>This plugin is very rudamentary, but will be made public as soon as it reaches a productive stage for all to use.</em> When hitting such a wall, the raycasts are activated and then we select the landing point by choosing the upper-most collision point. If all collision points have eqwual height, we always take the ‘closest’ jump, which just means ‘jumping down’.</p>
+
+<p>I also have implemented a system that allows the player to climb up to higher platforms, which relies only on one raycast. When colliding with an actual wall, the system checks if the collision point of the raycast provides enough room for the player to stand on, and if it is the case, the players foot-position is moved there.</p>
+
+<p>The only thing missing is a scaling system, for example when encountering ladders or climbable walls. When this is implemented, the movement system will only need to be checked on its robustness but will be considered finished in its capabilities (naturally, we also need to make some animation-clean-up further down the line).</p>
+
+<h2 id="dialogue-system">Dialogue System</h2>
+
+<p>For the dialogue system, I decided to use <img src="https://dialogue.nathanhoad.net/" alt="Nathan Hoad's Dialogue Manager" />, which already comes shipped with a great set of functionalities. For our game, I only needed to make some minor tweaks and add only little functionality, such as a ‘speaking sound’ whenever letters are being printed in the dialogue boxes.</p>
+
+<p>Depending on the type of dialogue, I created three separate instances with which an NPC can display its text. Something that might be needed for small cutscenes are the default dialogue boxes.</p>
+
+<p><img src="/assets/images/blog/2025-12-30/big_dialogue.png" alt="" /></p>
+
+<p>For smaller and unnamed NPCs that might have something to say, we would just display a small dialogue box above their heads.</p>
+
+<p><img src="/assets/images/blog/2025-12-30/short_dialogue.png" alt="" /></p>
+
+<p>For important cutscenes or in other special settings, we also have a bigger dialogue box again, but with another design.</p>
+
+<p><img src="/assets/images/blog/2025-12-30/cinematic_dialogue.png" alt="" /></p>
+
+<p>As for the speaking s</p>
+
+<video controls="" playsinline="" muted="" loop="" preload="metadata" style="max-width:100%;height:auto;">
+<source src="/assets/videos/blog/2025-12-30/speak.mp4" type="video/mp4" />
+</video>
+
+  </div>
+
+  <a class="u-url" href="/2025/12/30/003.html" hidden></a>
+</article>
+
+      </div>
+    </main><link id="fa-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css">
+
+<footer class="site-footer h-card">
+  <data class="u-url" value="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+      </div>
+      <div class="footer-col">
+        <p>Github-Page for Supermilk Dev-Blog</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list">
+  <li>
+    <a href="http://localhost:4000/feed.xml" target="_blank" title="Subscribe to syndication feed">
+      <svg class="svg-icon grey" viewbox="0 0 16 16">
+        <path d="M12.8 16C12.8 8.978 7.022 3.2 0 3.2V0c8.777 0 16 7.223 16 16h-3.2zM2.194
+          11.61c1.21 0 2.195.985 2.195 2.196 0 1.21-.99 2.194-2.2 2.194C.98 16 0 15.017 0
+          13.806c0-1.21.983-2.195 2.194-2.195zM10.606
+          16h-3.11c0-4.113-3.383-7.497-7.496-7.497v-3.11c5.818 0 10.606 4.79 10.606 10.607z"
+        />
+      </svg>
+    </a>
+  </li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+
+</body>
+
+</html>
